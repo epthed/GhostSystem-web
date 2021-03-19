@@ -1,5 +1,7 @@
 # ghostsystem-web
 
+This is the frontend for GhostSystem. Soon to be hosted at ghostsystem-web.herokuapp.com
+
 ## Project setup
 ```
 yarn install
