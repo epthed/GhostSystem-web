@@ -4,7 +4,7 @@ import SocketIO from 'socket.io-client';
 import VueSocketIO from 'vue-socket.io';
 import store from './vuex-store.js'
 
-export const SocketInstance = new SocketIO('http://localhost:5000'); //todo replace this with environment variable
+export const SocketInstance = new SocketIO(process.env.VUE_APP_API_URL.toString());
 
 Vue.use(new VueSocketIO({
     debug: true,
