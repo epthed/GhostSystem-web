@@ -8,6 +8,6 @@ var serveStatic = require('serve-static')
 app = express()
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
-var port = process.env.VUE_APP_PORT || 80
+var port = process.env.PORT || 8080 // PORT is defined by heroku, leave it alone. else 8080
 app.listen(port)
 console.log('server started ' + port)
