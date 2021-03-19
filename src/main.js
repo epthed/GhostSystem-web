@@ -12,7 +12,7 @@ Vue.use(new VueSocketIO({
     vuex: {
       store,
       actionPrefix: "SOCKET_",
-      // mutationPrefix: "SOCKET_" websocket messages should not be doing mutations directly
+      // mutationPrefix: "SOCKET_"   websocket messages should not be doing mutations directly
     },
   }));
 
