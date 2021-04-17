@@ -21,7 +21,8 @@ export let Game = {
         }
         else {
         this.musicPlaying = sound.play('music',
-            {loop: true})}
+            {loop: true,
+                    volume: .2})}
 
     }
 }
