@@ -2,6 +2,8 @@
 
 This is the frontend for GhostSystem. Soon to be hosted at ghostsystem-web.herokuapp.com
 
+All music is copyright Karl Casey @ White Bat Audio
+
 ## Project setup
 ```
 yarn install

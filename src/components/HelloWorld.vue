@@ -9,10 +9,15 @@
       Hello World.
     </p>
     <div>
+      All music is copyright Karl Casey @ White Bat Audio
+    </div>
+    <div>
       <p v-if="isConnected">We're connected to the server!</p>
       <input v-model="characterName">
       <p>Message from server: "{{ socketMessage }}"</p>
       <button @click="createCharacter(characterName)">Create character</button>
+
+      <button @click="playSound()">Rock Out</button>
     </div>
     <h3>Installed CLI Plugins</h3>
     <ul>
@@ -43,7 +48,8 @@
 
 
 <script>
-import store from '../vuex-store.js'
+import store from '@/vuex-store'
+import {Game} from '@/Game'
 
 export default {
   name: 'HelloWorld',
@@ -75,9 +81,12 @@ export default {
     createCharacter: function (data) {
       // $socket is socket.io-client instance. This can emit on any channel.
       this.$socket.emit('new_character', data) //unchanged for VueX
+    },
+    playSound: function() {
+      Game.init()
+      Game.play()
     }
   }
-
 }
 </script>
 
