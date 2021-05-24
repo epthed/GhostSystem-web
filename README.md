@@ -1,6 +1,6 @@
 # ghostsystem-web
 
-This is the frontend for GhostSystem. Soon to be hosted at ghostsystem-web.herokuapp.com
+This is the frontend for GhostSystem. Is hosted at https://ghostsystem-web.herokuapp.com
 
 All music is copyright Karl Casey @ White Bat Audio
 
