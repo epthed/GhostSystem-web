@@ -1,27 +1,27 @@
 # ghostsystem-web
 
-This is the frontend for GhostSystem. Is hosted at https://ghostsystem-web.herokuapp.com
+This is the frontend for GhostSystem. It's hosted at https://ghostsystem-web.herokuapp.com
 
 All music is copyright Karl Casey @ White Bat Audio
 
 ## Project setup
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+npm serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+npm build
 ```
 
 ### Lints and fixes files
 ```
-yarn lint
+npm lint
 ```
 
 ### Customize configuration
