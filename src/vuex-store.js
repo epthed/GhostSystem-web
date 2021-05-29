@@ -8,6 +8,7 @@ export default new Vuex.Store({
         isConnected: false,
         socketMessage: '',
         characterName: '',
+        userName: '',
     },
 
 
@@ -17,6 +18,9 @@ export default new Vuex.Store({
         },
         characterName: state => {
             return state.characterName
+        },
+        userName: state => {
+            return state.userName
         },
         socketMessage: state => {
             return state.socketMessage
@@ -35,6 +39,9 @@ export default new Vuex.Store({
         mutate_characterName(state, message) {
             state.characterName = message
         },
+        mutate_userName(state, message) {
+            state.userName = message
+        },
 
         socketMessage(state, message) { //test method for returning/exposing the entire content of a message
             state.socketMessage = message
@@ -51,6 +58,9 @@ export default new Vuex.Store({
         },
         "setCharacterName"(context, payload) { //local usage of setting new_character mutation
             context.commit('mutate_characterName', payload)
+        },
+        "setUserName"(context, payload) { //local usage of setting new_character mutation
+            context.commit('mutate_userName', payload)
         },
         "SOCKET_connect"(context) {
             context.commit('connect')
