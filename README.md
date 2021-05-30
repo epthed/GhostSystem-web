@@ -9,19 +9,20 @@ All music is copyright Karl Casey @ White Bat Audio
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development, use this if running locally
 ```
-npm serve
+npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production. includes https redirect
 ```
-npm build
+npm run build
+node server
 ```
 
 ### Lints and fixes files
 ```
-npm lint
+npm run lint
 ```
 
 ### Customize configuration
