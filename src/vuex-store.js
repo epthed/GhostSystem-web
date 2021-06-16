@@ -9,6 +9,7 @@ export default new Vuex.Store({
         socketMessage: '',
         characterName: '',
         userName: '',
+        map: {},
     },
 
 
@@ -24,7 +25,10 @@ export default new Vuex.Store({
         },
         socketMessage: state => {
             return state.socketMessage
-        }
+        },
+        map: state => {
+            return state.map
+        },
     },
 
     mutations: { // mutation is the only way to modify state, doesn't care about business logic. Synchronous. are committed
@@ -41,6 +45,10 @@ export default new Vuex.Store({
         },
         mutate_userName(state, message) {
             state.userName = message
+        },
+
+        mutate_map(state, message) {
+            state.map = message
         },
 
         socketMessage(state, message) { //test method for returning/exposing the entire content of a message
@@ -64,6 +72,9 @@ export default new Vuex.Store({
         },
         "SOCKET_connect"(context) {
             context.commit('connect')
+        },
+        "SOCKET_map_update"(context, payload) {
+            context.commit('mutate_map', payload.data)
         },
         "SOCKET_disconnect"(context) {
             context.commit('disconnect')
