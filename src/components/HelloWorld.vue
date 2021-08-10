@@ -50,7 +50,7 @@
 
 <script>
 import store from '@/vuex-store'
-import {Game} from '@/Game'
+import Game from '@/Game'
 
 export default {
   name: 'HelloWorld',
@@ -93,7 +93,7 @@ export default {
       data['userName'] = userName;
       this.$socket.emit('new_character', data) //unchanged for VueX
     },
-    playSound: function() {
+    playSound: function () {
       Game.init()
       Game.play()
     }
