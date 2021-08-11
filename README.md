@@ -2,6 +2,8 @@
 
 This is the frontend for GhostSystem. It's hosted at https://ghostsystem-web.herokuapp.com
 
+Backend Github: [Ghostsystem](https://github.com/epthed/GhostSystem)
+
 All music is copyright Karl Casey @ White Bat Audio
 
 ## Project setup
