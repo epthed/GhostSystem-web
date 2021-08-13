@@ -6,9 +6,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isConnected: false,
+    Authenticated: false,
+    loginMessage: 'Welcome, please try to log in',
     socketMessage: '',
     characterName: '',
     userName: '',
+    password: '',
     map: {},
     musicPlaying: false,
   },
@@ -18,6 +21,12 @@ export default new Vuex.Store({
     isConnected: state => {
       return state.isConnected
     },
+    Authenticated: state => {
+      return state.Authenticated
+    },
+    loginMessage: state => {
+      return state.loginMessage
+    },
     characterName: state => {
       return state.characterName
     },
@@ -26,6 +35,9 @@ export default new Vuex.Store({
     },
     userName: state => {
       return state.userName
+    },
+    password: state => {
+      return state.password
     },
     socketMessage: state => {
       return state.socketMessage
@@ -43,6 +55,15 @@ export default new Vuex.Store({
     disconnect(state) {
       state.isConnected = false;
     },
+    auth_success(state, message) {
+      state.Authenticated = true;
+      state.loginMessage = message;
+      state.password = "";
+    },
+    auth_fail(state, message) {
+      state.Authenticated = false;
+      state.loginMessage = message;
+    },
 
     mutate_characterName(state, message) {
       state.characterName = message
@@ -53,7 +74,9 @@ export default new Vuex.Store({
     mutate_userName(state, message) {
       state.userName = message
     },
-
+    mutate_password(state, message) {
+      state.password = message
+    },
     mutate_map(state, message) {
       state.map = message
     },
@@ -79,16 +102,26 @@ export default new Vuex.Store({
         payload.then(function (response) {
           context.commit('mutate_musicPlaying', response)
         })
-      }
-      else {
+      } else {
         context.commit('mutate_musicPlaying', false)
       }
     },
     "setUserName"(context, payload) { //local usage of setting new_character mutation
       context.commit('mutate_userName', payload)
     },
+    "setPassword"(context, payload) { //local usage of setting password mutation todo null this out after authenticated
+      context.commit('mutate_password', payload)
+    },
     "SOCKET_connect"(context) {
       context.commit('connect')
+    },
+    "SOCKET_authenticate"(context, payload) {
+      if(payload.success){
+        context.commit('auth_success', payload.message);
+      } else {
+        context.commit('auth_fail', payload.message);
+      }
+
     },
     "SOCKET_map_update"(context, payload) {
       context.commit('mutate_map', payload.data)
