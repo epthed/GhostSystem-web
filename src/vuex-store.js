@@ -14,6 +14,7 @@ export default new Vuex.Store({
     password: '',
     map: {},
     musicPlaying: false,
+    io: {},
   },
 
 
@@ -50,15 +51,23 @@ export default new Vuex.Store({
   mutations: { // mutation is the only way to modify state, doesn't care about business logic. Synchronous. are committed
     connect(state) {
       state.isConnected = true;
-    },
 
+    },
     disconnect(state) {
       state.isConnected = false;
     },
+    setSocket: (state, socket) => {
+      state.io = socket
+    },
     auth_success(state, message) {
       state.Authenticated = true;
-      state.loginMessage = message;
+      state.loginMessage = message.message;
       state.password = "";
+      Vue.$cookies.remove("user");
+      Vue.$cookies.set("user", message.username);
+      Vue.$cookies.remove("auth_token");
+      Vue.$cookies.set("auth_token", message.auth_token);
+
     },
     auth_fail(state, message) {
       state.Authenticated = false;
@@ -114,14 +123,26 @@ export default new Vuex.Store({
     },
     "SOCKET_connect"(context) {
       context.commit('connect')
+      let data = {}
+      if (Vue.$cookies.isKey('user')) {
+        data['username'] = Vue.$cookies.get('user')
+        data['auth_token'] = Vue.$cookies.get('auth_token')
+        context.state.io.emit('authenticate', data)
+      }
     },
     "SOCKET_authenticate"(context, payload) {
-      if(payload.success){
-        context.commit('auth_success', payload.message);
+      if (payload.success) {
+        context.commit('auth_success', payload);
       } else {
         context.commit('auth_fail', payload.message);
       }
-
+    },
+    "SOCKET_register"(context, payload){
+      if (payload.success) {
+        context.commit('auth_success', payload);
+      } else {
+        context.commit('auth_fail', payload.message);
+      }
     },
     "SOCKET_map_update"(context, payload) {
       context.commit('mutate_map', payload.data)

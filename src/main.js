@@ -26,7 +26,6 @@ Vue.use(new VueSocketIO({
   }));
 Vue.use(VueCookies)
 Vue.$cookies.config('14d')
-Vue.$cookies.set("user", "blah")
 // todo store the authenticated user token here and then somehow send it to backend for continual session
 
 Vue.config.productionTip = false;

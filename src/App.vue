@@ -7,11 +7,15 @@
 
 <script>
 import main from './components/Main.vue'
+import store from './vuex-store.js'
 
 export default {
   name: 'App',
   components: {
     'Main': main
+  },
+  beforeCreate() {
+    store.commit('setSocket', this.$socket)
   }
 }
 </script>
