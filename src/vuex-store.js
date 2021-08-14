@@ -124,10 +124,12 @@ export default new Vuex.Store({
     "SOCKET_connect"(context) {
       context.commit('connect')
       let data = {}
-      if (Vue.$cookies.isKey('user')) {
+      if (Vue.$cookies.isKey('user') && Vue.$cookies.isKey('auth_token')) {
         data['username'] = Vue.$cookies.get('user')
         data['auth_token'] = Vue.$cookies.get('auth_token')
-        context.state.io.emit('authenticate', data)
+        if (typeof data['username'] === "string" && typeof data['auth_token'] === "string") {
+          context.state.io.emit('authenticate', data)
+        }
       }
     },
     "SOCKET_authenticate"(context, payload) {
@@ -137,7 +139,7 @@ export default new Vuex.Store({
         context.commit('auth_fail', payload.message);
       }
     },
-    "SOCKET_register"(context, payload){
+    "SOCKET_register"(context, payload) {
       if (payload.success) {
         context.commit('auth_success', payload);
       } else {

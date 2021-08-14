@@ -51,7 +51,13 @@ export default {
       let data = {}
       data['password'] = password;
       data['username'] = userName;
-      this.$socket.emit('authenticate', data)
+      if (typeof data['username'] === "string" && typeof data['password'] === "string") {
+        this.$socket.emit('authenticate', data)
+      }
+      else {
+        this.loginMessage = "Please enter a valid username and password"
+      }
+
       this.loginMessage = "Trying to login"
     },
   },
