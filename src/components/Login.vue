@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <form v-on:submit.prevent="onSubmit" rel="noopener noreferrer nofollow">
     <p v-if="isConnected">Websocket Connected</p>
-    <input v-model="userName" placeholder="username">
-    <input v-model="password" placeholder="password" type="password">
+    <input v-model="userName" placeholder="username" autocomplete="username">
+    <input v-model="password" placeholder="password" type="password" autocomplete="password">
 
-    <button @click="authenticate(userName, password)">Register/login</button>
+    <button @click="onSubmit(userName, password)">Register/login</button>
     <p>{{ loginMessage }}</p>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -47,14 +47,14 @@ export default {
     },
   },
   methods: {
-    authenticate: function (userName, password) {
+    onSubmit: function (userName, password) { //authenticate
       let data = {}
       data['password'] = password;
       data['username'] = userName;
       this.$socket.emit('authenticate', data)
       this.loginMessage = "Trying to login"
     },
-  }
+  },
 }
 </script>
 
