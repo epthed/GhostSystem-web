@@ -80,6 +80,9 @@ export default new Vuex.Store({
     mutate_musicPlaying(state, message) {
       state.musicPlaying = message
     },
+    mutate_loginMessage(state, message) {
+      state.loginMessage = message
+    },
     mutate_userName(state, message) {
       state.userName = message
     },
@@ -117,6 +120,9 @@ export default new Vuex.Store({
     },
     "setUserName"(context, payload) { //local usage of setting new_character mutation
       context.commit('mutate_userName', payload)
+    },
+    "setloginMessage"(context, payload) { //local usage of setting loginmessge mutation
+      context.commit('mutate_loginMessage', payload)
     },
     "setPassword"(context, payload) { //local usage of setting password mutation todo null this out after authenticated
       context.commit('mutate_password', payload)
