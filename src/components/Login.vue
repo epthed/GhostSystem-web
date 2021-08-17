@@ -3,7 +3,7 @@
     <form v-on:submit.prevent="onSubmit" rel="noopener noreferrer nofollow">
       <p v-if="isConnected">Websocket Connected</p>
 
-      <input v-model="userName" placeholder="username" autocomplete="username">
+      <input v-model="username" placeholder="username" autocomplete="username">
       <input v-model="password" placeholder="password" type="password" autocomplete="password">
       <div v-show="register">
         <input v-model="email" placeholder="email" autocomplete="email">
@@ -11,7 +11,7 @@
           password and we won't send it to anyone else</p>
 
       </div>
-      <button @click="onSubmit(userName, password, email)" ref="submit">Login</button>
+      <button @click="onSubmit(username, password, email)" ref="submit">Login</button>
 
       <p>{{ loginMessage }}</p>
     </form>
@@ -45,9 +45,9 @@ export default {
         return store.dispatch('setloginMessage', value);
       },
     },
-    userName: {
+    username: {
       get() {
-        return store.getters.userName;
+        return store.getters.username;
       },
       set(value) {
         return store.dispatch('setUserName', value)
@@ -63,10 +63,10 @@ export default {
     },
   },
   methods: {
-    onSubmit: function (userName, password, email) { //authenticate or register
+    onSubmit: function (username, password, email) { //authenticate or register
       let data = {}
       data['password'] = password;
-      data['username'] = userName;
+      data['username'] = username;
       if (this.register) {
         data['email'] = email;
         if (typeof data['username'] === "string" && typeof data['password'] === "string" && this.reg.test(data['email']) && data['password'].length >= 12) {

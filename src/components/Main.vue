@@ -8,7 +8,7 @@
         <p v-if="isConnected">Websocket Connected, {{loginMessage}}</p>
         <input v-model="characterName" placeholder="character name">
         <p>Message from server: "{{ socketMessage }}"</p>
-        <button @click="createCharacter(characterName, userName)">Create character</button>
+        <button @click="createCharacter(characterName, username)">Create character</button>
 
         <button @click="playSound()">Rock Out</button>
       </div>
@@ -61,9 +61,9 @@ export default {
         return store.dispatch('setCharacterName', value)
       }
     },
-    userName: {
+    username: {
       get() {
-        return store.getters.userName;
+        return store.getters.username;
       },
       set(value) {
         return store.dispatch('setUserName', value)
@@ -77,11 +77,11 @@ export default {
   },
 
   methods: {
-    createCharacter: function (characterName, userName) {
+    createCharacter: function (characterName, username) {
       // $socket is socket.io-client instance. This can emit on any channel.
       let data = {}
       data['characterName'] = characterName;
-      data['userName'] = userName;
+      data['username'] = username;
       this.$socket.emit('new_character', data) //unchanged for VueX
     },
 

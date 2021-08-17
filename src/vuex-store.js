@@ -10,7 +10,7 @@ export default new Vuex.Store({
     loginMessage: 'Welcome, please try to log in',
     socketMessage: '',
     characterName: '',
-    userName: '',
+    username: '',
     password: '',
     map: {},
     musicPlaying: false,
@@ -34,8 +34,8 @@ export default new Vuex.Store({
     musicPlaying: state => {
       return state.musicPlaying
     },
-    userName: state => {
-      return state.userName
+    username: state => {
+      return state.username
     },
     password: state => {
       return state.password
@@ -83,8 +83,8 @@ export default new Vuex.Store({
     mutate_loginMessage(state, message) {
       state.loginMessage = message
     },
-    mutate_userName(state, message) {
-      state.userName = message
+    mutate_username(state, message) {
+      state.username = message
     },
     mutate_password(state, message) {
       state.password = message
@@ -119,7 +119,7 @@ export default new Vuex.Store({
       }
     },
     "setUserName"(context, payload) { //local usage of setting new_character mutation
-      context.commit('mutate_userName', payload)
+      context.commit('mutate_username', payload)
     },
     "setloginMessage"(context, payload) { //local usage of setting loginmessge mutation
       context.commit('mutate_loginMessage', payload)
