@@ -104,7 +104,11 @@ export default new Vuex.Store({
       context.commit('mutate_characterName', payload.characterName)
       context.commit('socketMessage', payload)
       console.log("newcharacter was hit", payload.characterName)
-      // do something
+    },
+    "SOCKET_existing_character"(context, payload) {
+      context.commit('mutate_characterName', payload.characterName)
+      context.commit('socketMessage', payload)
+      console.log("existing character was hit", payload.characterName)
     },
     "setCharacterName"(context, payload) { //local usage of setting new_character mutation
       context.commit('mutate_characterName', payload)
@@ -131,6 +135,7 @@ export default new Vuex.Store({
       context.commit('connect')
       let data = {}
       if (Vue.$cookies.isKey('user') && Vue.$cookies.isKey('auth_token')) {
+        context.commit("mutate_username", Vue.$cookies.get('user'))
         data['username'] = Vue.$cookies.get('user')
         data['auth_token'] = Vue.$cookies.get('auth_token')
         if (typeof data['username'] === "string" && typeof data['auth_token'] === "string") {
